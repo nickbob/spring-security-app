@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <title>welcome</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}" />
+</head>
+
+<body>
+    <div th:fragment="app_header" class="header">
+        <a th:href="@{/index}">Home</a> | <a th:href="@{/users}">Users</a> | <a th:href="@{/signon}">Create user</a> |
+        <a th:href="@{/login?logout=true}">Log out</a>
+    </div>
+    <div th:fragment="welcome" class="main-content">
+        <h1>Welcome</h1>
+        <p th:utext="${welcome}">...</p>
+    </div>
+    <div th:fragment="user_list" class="main-content">
+        <br>
+        <table>
+            <tr>
+                <th>First name</th>
+                <th>Second name</th>
+            </tr>
+            <tr th:each="user : ${crew}">
+                <td th:utext="${user.Fname}">...</td>
+                <td th:utext="${user.Sname}">...</td>
+            </tr>
+        </table>
+    </div>
+    <div th:fragment="user_create" class="main-content">
+        <br>
+        <form th:action="@{/signon}" th:object="${addUser}" method="POST">
+            <table>
+                <tr>
+                    <td>First name</td>
+                    <td><input type="text" th:field="*{Fname}" /></td>
+                </tr>
+                <tr>
+                    <td>Second name</td>
+                    <td><input type="text" th:field="*{Sname}" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="submit" value="Create" /> </td>
+                </tr>
+            </table>
+        </form>
+        <div th:if="${createUserError}" th:utext="${createUserError}" style="color: brown"></div>
+    </div>
+
+    <div th:fragment="app_login">
+        <form th:action="@{/login}" name="login" method="POST">
+        <table>
+            <tr>
+                <td>Username:</td> <td><input type="text" name="username" value='' /></td>
+            </tr>
+            <tr>
+                <td>Password:</td> <td><input type="password" name="password" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Log in" name="submit" /> </td>
+            </tr>
+        </table>
+        </form>
+        <div th:if="${loginMessage}" th:utext="${loginMessage}" style="color: brown"></div>
+    </div>
+
+
+    <footer>
+        <p align="center">&copy nickbob 2020</p>
+    </footer>
+</body>
+
+</html>

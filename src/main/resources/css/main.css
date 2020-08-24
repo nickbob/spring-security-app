@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+footer {
+    flex: 0 0 auto;
+    background: #666;
+    color: white;
+    padding: 20px 10px;
+}
+
+a {
+    color: #00aaff;
+}
+
+.header {
+    font-family: Consolas, monaco, monospace;
+    background: #e1e1e1;
+    height: 40px;
+    padding: 20px 20px 0;
+}
+
+.main-content {
+    height: 60vh;
+    padding: 20px;
+    flex: 1 0 auto;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
